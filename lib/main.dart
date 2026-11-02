@@ -73,21 +73,29 @@ class ProfilePage extends StatelessWidget {
             name: 'Sri Asih Agustina',
             role: 'Host Live',
           ),
-          const SizedBox(height: 24),
+          const SizedBox(height: 12),
+          OutlinedButton.icon(
+            onPressed: () {},
+            icon: const Icon(Icons.edit, size: 18),
+            label: const Text('Edit Profil'),
+          ),
+          const SizedBox(height: 20),
           const ProfileStats(),
-          const SizedBox(height: 24),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16),
-            child: Align(
-              alignment: Alignment.centerLeft,
+          const SizedBox(height: 20),
+          const Align(
+            alignment: Alignment.centerLeft,
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16),
               child: Text(
                 'Pengalaman',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
             ),
           ),
+          const SizedBox(height: 8),
           Expanded(
             child: ListView.builder(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
               itemCount: experiences.length,
               itemBuilder: (context, index) {
                 final item = experiences[index];
@@ -121,7 +129,7 @@ class ProfileHeader extends StatelessWidget {
       width: double.infinity,
       child: Column(
         children: [
-          const SizedBox(height: 32),
+          const SizedBox(height: 24),
           const CircleAvatar(
             radius: 50,
             backgroundColor: Colors.blueGrey,
@@ -130,12 +138,13 @@ class ProfileHeader extends StatelessWidget {
           const SizedBox(height: 16),
           Text(
             name,
-            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            textAlign: TextAlign.center,
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 4),
           Text(
             role,
-            style: const TextStyle(fontSize: 14, color: Colors.grey),
+            style: TextStyle(fontSize: 14, color: Colors.grey[600]),
           ),
         ],
       ),
@@ -184,12 +193,16 @@ class StatItem extends StatelessWidget {
           Text(
             value,
             style: const TextStyle(
-              fontSize: 20,
+              fontSize: 18,
               fontWeight: FontWeight.bold,
               color: Colors.blue,
             ),
           ),
-          Text(label, style: const TextStyle(color: Colors.grey)),
+          const SizedBox(height: 4),
+          Text(
+            label,
+            style: TextStyle(fontSize: 12, color: Colors.grey[600]),
+          ),
         ],
       ),
     );
@@ -212,21 +225,21 @@ class ExperienceCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 3,
-      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+      margin: const EdgeInsets.only(bottom: 10),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
       ),
       child: ListTile(
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
         leading: CircleAvatar(
           backgroundColor: Colors.blue.shade50,
           child: Icon(icon, color: Colors.blue),
         ),
         title: Text(
           title,
-          style: const TextStyle(fontWeight: FontWeight.bold),
+          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
         ),
-        subtitle: Text(subtitle),
+        subtitle: Text(subtitle, style: const TextStyle(fontSize: 12)),
       ),
     );
   }
