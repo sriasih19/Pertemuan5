@@ -25,13 +25,37 @@ class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
 
   // Data dummy pengalaman
-  final List<String> experiences = const [
-    'Host Live TikTok Shop',
-    'Host Live Shopee Live',
-    'MC & Host Event Brand Lokal',
-    'Content Creator Instagram Reels',
-    'Talent Live Streaming Agency',
-    'Brand Ambassador Produk Skincare',
+  final List<Map<String, dynamic>> experiences = const [
+    {
+      'title': 'Host Live TikTok Shop',
+      'subtitle': 'Live jualan fashion & skincare • 2024 - Sekarang',
+      'icon': Icons.live_tv,
+    },
+    {
+      'title': 'Host Live Shopee Live',
+      'subtitle': 'Host flash sale dan promo harian • 2023 - 2024',
+      'icon': Icons.shopping_bag,
+    },
+    {
+      'title': 'MC & Host Event Brand Lokal',
+      'subtitle': 'Pembawa acara launching produk • 2022 - 2023',
+      'icon': Icons.mic,
+    },
+    {
+      'title': 'Content Creator Instagram Reels',
+      'subtitle': 'Konten promosi & review produk • 2022 - 2023',
+      'icon': Icons.camera_alt,
+    },
+    {
+      'title': 'Talent Live Streaming Agency',
+      'subtitle': 'Talent live di beberapa brand • 2021 - 2022',
+      'icon': Icons.groups,
+    },
+    {
+      'title': 'Brand Ambassador Skincare',
+      'subtitle': 'Perwakilan brand di event & sosmed • 2021',
+      'icon': Icons.star,
+    },
   ];
 
   @override
@@ -66,9 +90,11 @@ class ProfilePage extends StatelessWidget {
             child: ListView.builder(
               itemCount: experiences.length,
               itemBuilder: (context, index) {
-                return ListTile(
-                  leading: const Icon(Icons.work, color: Colors.blue),
-                  title: Text(experiences[index]),
+                final item = experiences[index];
+                return ExperienceCard(
+                  title: item['title'] as String,
+                  subtitle: item['subtitle'] as String,
+                  icon: item['icon'] as IconData,
                 );
               },
             ),
@@ -165,6 +191,42 @@ class StatItem extends StatelessWidget {
           ),
           Text(label, style: const TextStyle(color: Colors.grey)),
         ],
+      ),
+    );
+  }
+}
+
+class ExperienceCard extends StatelessWidget {
+  final String title;
+  final String subtitle;
+  final IconData icon;
+
+  const ExperienceCard({
+    super.key,
+    required this.title,
+    required this.subtitle,
+    required this.icon,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 3,
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: ListTile(
+        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        leading: CircleAvatar(
+          backgroundColor: Colors.blue.shade50,
+          child: Icon(icon, color: Colors.blue),
+        ),
+        title: Text(
+          title,
+          style: const TextStyle(fontWeight: FontWeight.bold),
+        ),
+        subtitle: Text(subtitle),
       ),
     );
   }
