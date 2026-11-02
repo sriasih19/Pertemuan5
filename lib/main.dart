@@ -21,11 +21,19 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
 
+  @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  // Variabel nama, sekarang tidak lagi di-hardcode di widget
+  String userName = 'Sri Asih Agustina';
+
   // Data dummy pengalaman
-  final List<Map<String, dynamic>> experiences = const [
+  static const List<Map<String, dynamic>> _experiences = [
     {
       'title': 'Host Live TikTok Shop',
       'subtitle': 'Live jualan fashion & skincare • 2024 - Sekarang',
@@ -58,7 +66,7 @@ class ProfilePage extends StatelessWidget {
     },
   ];
 
-  void _showNotActiveSnackBar(BuildContext context) {
+  void _showNotActiveSnackBar() {
     ScaffoldMessenger.of(context).hideCurrentSnackBar();
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
@@ -79,13 +87,13 @@ class ProfilePage extends StatelessWidget {
       ),
       body: Column(
         children: [
-          const ProfileHeader(
-            name: 'Sri Asih Agustina',
+          ProfileHeader(
+            name: userName,
             role: 'Host Live',
           ),
           const SizedBox(height: 12),
           OutlinedButton.icon(
-            onPressed: () => _showNotActiveSnackBar(context),
+            onPressed: _showNotActiveSnackBar,
             icon: const Icon(Icons.edit, size: 18),
             label: const Text('Edit Profil'),
           ),
@@ -106,9 +114,9 @@ class ProfilePage extends StatelessWidget {
           Expanded(
             child: ListView.builder(
               padding: const EdgeInsets.symmetric(horizontal: 16),
-              itemCount: experiences.length,
+              itemCount: _experiences.length,
               itemBuilder: (context, index) {
-                final item = experiences[index];
+                final item = _experiences[index];
                 return ExperienceCard(
                   title: item['title'] as String,
                   subtitle: item['subtitle'] as String,
