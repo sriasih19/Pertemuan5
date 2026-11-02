@@ -33,12 +33,14 @@ class ProfilePage extends StatelessWidget {
         backgroundColor: Colors.blue,
         foregroundColor: Colors.white,
       ),
-      body: const Column(
-        children: [
+      body: Column(
+        children: const [
           ProfileHeader(
-            name: 'SriAsih Agustina',
-            role: 'Mahasiswa',
+            name: 'Sri Asih Agustina',
+            role: 'Host Live',
           ),
+          SizedBox(height: 24),
+          ProfileStats(),
         ],
       ),
     );
@@ -77,6 +79,59 @@ class ProfileHeader extends StatelessWidget {
             role,
             style: const TextStyle(fontSize: 14, color: Colors.grey),
           ),
+        ],
+      ),
+    );
+  }
+}
+
+class ProfileStats extends StatelessWidget {
+  const ProfileStats({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.symmetric(vertical: 16),
+      decoration: BoxDecoration(
+        color: Colors.blue.shade50,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: const Row(
+        children: [
+          StatItem(value: '15', label: 'Proyek'),
+          StatItem(value: '1.2K', label: 'Followers'),
+          StatItem(value: '42', label: 'Following'),
+        ],
+      ),
+    );
+  }
+}
+
+class StatItem extends StatelessWidget {
+  final String value;
+  final String label;
+
+  const StatItem({
+    super.key,
+    required this.value,
+    required this.label,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Column(
+        children: [
+          Text(
+            value,
+            style: const TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: Colors.blue,
+            ),
+          ),
+          Text(label, style: const TextStyle(color: Colors.grey)),
         ],
       ),
     );
