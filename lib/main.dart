@@ -24,6 +24,16 @@ class MyApp extends StatelessWidget {
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
 
+  // Data dummy pengalaman
+  final List<String> experiences = const [
+    'Host Live TikTok Shop',
+    'Host Live Shopee Live',
+    'MC & Host Event Brand Lokal',
+    'Content Creator Instagram Reels',
+    'Talent Live Streaming Agency',
+    'Brand Ambassador Produk Skincare',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,13 +44,35 @@ class ProfilePage extends StatelessWidget {
         foregroundColor: Colors.white,
       ),
       body: Column(
-        children: const [
-          ProfileHeader(
+        children: [
+          const ProfileHeader(
             name: 'Sri Asih Agustina',
             role: 'Host Live',
           ),
-          SizedBox(height: 24),
-          ProfileStats(),
+          const SizedBox(height: 24),
+          const ProfileStats(),
+          const SizedBox(height: 24),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                'Pengalaman',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+            ),
+          ),
+          Expanded(
+            child: ListView.builder(
+              itemCount: experiences.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  leading: const Icon(Icons.work, color: Colors.blue),
+                  title: Text(experiences[index]),
+                );
+              },
+            ),
+          ),
         ],
       ),
     );
