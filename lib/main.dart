@@ -58,6 +58,16 @@ class ProfilePage extends StatelessWidget {
     },
   ];
 
+  void _showNotActiveSnackBar(BuildContext context) {
+    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('Fitur Edit Profil belum aktif'),
+        duration: Duration(seconds: 2),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,7 +85,7 @@ class ProfilePage extends StatelessWidget {
           ),
           const SizedBox(height: 12),
           OutlinedButton.icon(
-            onPressed: () {},
+            onPressed: () => _showNotActiveSnackBar(context),
             icon: const Icon(Icons.edit, size: 18),
             label: const Text('Edit Profil'),
           ),
